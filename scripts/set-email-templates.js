@@ -41,12 +41,12 @@ const codeEmail = (heading, intro) => `<div style="font-family:Arial,sans-serif;
 </div>`;
 
 const body = {
-  mailer_subjects_confirmation: "Your Cockers verification code",
+  mailer_subjects_confirmation: "Your Shuttleon verification code",
   mailer_templates_confirmation_content: codeEmail(
     "Confirm your email",
     "Enter this code in the app to finish creating your account:",
   ),
-  mailer_subjects_recovery: "Your Cockers password reset code",
+  mailer_subjects_recovery: "Your Shuttleon password reset code",
   mailer_templates_recovery_content: codeEmail(
     "Reset your password",
     "Enter this code in the app to choose a new password:",

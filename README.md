@@ -1,4 +1,4 @@
-# Cockers
+# Shuttleon
 
 Badminton scoring and tournaments. Offline-first: data lives in a local SQLite database and syncs to
 Supabase when you are signed in and online.

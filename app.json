@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Cockers",
+    "name": "Shuttleon",
     "slug": "BadMen",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -14,7 +14,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.kaidev00.cockers"
+      "bundleIdentifier": "com.kaidev00.shuttleon"
     },
     "android": {
       "adaptiveIcon": {
@@ -23,7 +23,7 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.kaidev00.cockers"
+      "package": "com.kaidev00.shuttleon"
     },
     "web": {
       "favicon": "./assets/favicon.png",
@@ -32,7 +32,7 @@
     "plugins": [
       "expo-sqlite"
     ],
-    "scheme": "cockers",
+    "scheme": "shuttleon",
     "extra": {
       "eas": {
         "projectId": "fee307f5-1dfe-474e-a5a1-d22289a850e5"
