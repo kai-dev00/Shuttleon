@@ -30,7 +30,7 @@ export default function WelcomeScreen() {
             <Zap size={40} color={primaryForeground} />
           </View>
           <View className="items-center gap-1">
-            <Text className="text-4xl font-extrabold tracking-tight">Cockers</Text>
+            <Text className="text-4xl font-extrabold tracking-tight">Shuttleon</Text>
             <Text className="text-center text-base text-muted-foreground">
               Badminton scoring and tournaments, made simple.
             </Text>

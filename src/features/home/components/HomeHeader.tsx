@@ -18,7 +18,7 @@ export function HomeHeader() {
           fontWeight: "bold",
         }}
       >
-        Cockers
+        Shuttleon
       </Text>
 
       <Text

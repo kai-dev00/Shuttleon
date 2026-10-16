@@ -67,7 +67,7 @@ export default function AccountScreen() {
 
   function shareCode() {
     if (!backup) return;
-    void Share.share({ message: `My Cockers backup code: ${formatBackupCode(backup.code)}` });
+    void Share.share({ message: `My Shuttleon backup code: ${formatBackupCode(backup.code)}` });
   }
 
   function confirmSignOut() {
@@ -175,7 +175,7 @@ export default function AccountScreen() {
           <>
             <Card className="items-center gap-2 p-5">
               <CloudOff size={28} color={mutedForeground} />
-              <Text className="text-base font-semibold">You're using Cockers as a guest</Text>
+              <Text className="text-base font-semibold">You're using Shuttleon as a guest</Text>
               <Text className="text-center text-sm text-muted-foreground">
                 Your matches are saved on this phone only. Create an account to keep them online and use them on
                 other devices. Everything you've added so far will be uploaded.
