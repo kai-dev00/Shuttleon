@@ -5,7 +5,7 @@ import { useTournamentMatch } from "./hooks/useTournaments";
 
 export default function TournamentMatchPlayScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  const matchId = id ? Number(id) : undefined;
+  const matchId = id || undefined;
   const { data: match, isLoading, completeSet } = useTournamentMatch(matchId);
 
   const sidesReady = Boolean(match?.sideA && match?.sideB);

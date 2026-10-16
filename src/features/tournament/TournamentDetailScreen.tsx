@@ -28,7 +28,7 @@ const TAB_OPTIONS: { label: string; value: Tab }[] = [
 
 export default function TournamentDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  const tournamentId = id ? Number(id) : undefined;
+  const tournamentId = id || undefined;
   const { mutedForeground, primaryForeground } = useThemeColors();
 
   const { data: tournament, isLoading: isLoadingTournament } = useTournament(tournamentId);

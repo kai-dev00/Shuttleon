@@ -18,7 +18,7 @@ export function HomeHeader() {
           fontWeight: "bold",
         }}
       >
-        BadMen
+        Cockers
       </Text>
 
       <Text

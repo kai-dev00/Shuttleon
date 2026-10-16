@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "BadMen",
+    "name": "Cockers",
     "slug": "BadMen",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -10,18 +10,20 @@
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#c2ff6d"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.kaidev00.cockers"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#c2ff6d"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.kaidev00.cockers"
     },
     "web": {
       "favicon": "./assets/favicon.png",
@@ -29,6 +31,13 @@
     },
     "plugins": [
       "expo-sqlite"
-    ]
+    ],
+    "scheme": "cockers",
+    "extra": {
+      "eas": {
+        "projectId": "fee307f5-1dfe-474e-a5a1-d22289a850e5"
+      }
+    },
+    "owner": "kaiiuue"
   }
 }

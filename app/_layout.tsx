@@ -13,6 +13,8 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "@/lib/query-client";
 import { NAV_THEME, THEME } from "@/lib/theme";
 import { useThemeBootstrap } from "@/src/hooks/useTheme";
+import { AuthProvider, useAuth } from "@/src/auth/AuthProvider";
+import { SyncProvider } from "@/src/sync/SyncProvider";
 
 export default function RootLayout() {
   const ready = useThemeBootstrap();
@@ -25,19 +27,47 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={NAV_THEME[scheme]}>
       <QueryClientProvider client={queryClient}>
-        <SQLiteProvider databaseName="badmen.db" onInit={migrateDbIfNeeded}>
-          <SafeAreaProvider>
-            <StatusBar style={scheme === "dark" ? "light" : "dark"} />
-            <Stack
-              screenOptions={{
-                headerShown: false,
-                contentStyle: { backgroundColor: THEME[scheme].background },
-              }}
-            />
-            <PortalHost />
-          </SafeAreaProvider>
-        </SQLiteProvider>
+        <AuthProvider>
+          <SQLiteProvider databaseName="cockers.db" onInit={migrateDbIfNeeded}>
+            <SyncProvider>
+              <SafeAreaProvider>
+                <StatusBar style={scheme === "dark" ? "light" : "dark"} />
+                <RootStack backgroundColor={THEME[scheme].background} />
+                <PortalHost />
+              </SafeAreaProvider>
+            </SyncProvider>
+          </SQLiteProvider>
+        </AuthProvider>
       </QueryClientProvider>
     </ThemeProvider>
+  );
+}
+
+/** Signed-in users and guests get the app; everyone else only sees the welcome and auth screens. */
+function RootStack({ backgroundColor }: { backgroundColor: string }) {
+  const { session, isGuest, isLoading, isConfigured } = useAuth();
+
+  // Don't flash the welcome screen while the saved session is being read.
+  if (isLoading) return null;
+
+  // Without Supabase config nobody can sign in, so fall back to the local-only app.
+  const canUseApp = Boolean(session) || isGuest || !isConfigured;
+  // Guests can still reach the sign-in screens to create an account later.
+  const canSignIn = isConfigured && !session;
+
+  return (
+    <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor } }}>
+      <Stack.Protected guard={canUseApp}>
+        <Stack.Screen name="(tabs)" />
+      </Stack.Protected>
+
+      <Stack.Protected guard={!canUseApp}>
+        <Stack.Screen name="welcome" />
+      </Stack.Protected>
+
+      <Stack.Protected guard={canSignIn}>
+        <Stack.Screen name="auth" />
+      </Stack.Protected>
+    </Stack>
   );
 }

@@ -1,6 +1,6 @@
 import { Tabs } from "expo-router";
 import { View } from "react-native";
-import { House, Trophy, Zap, type LucideIcon } from "lucide-react-native";
+import { House, Trophy, UserRound, Zap, type LucideIcon } from "lucide-react-native";
 import { useThemeColors } from "@/src/hooks/useThemeColors";
 
 function TabIcon({
@@ -72,6 +72,16 @@ export default function TabsLayout() {
           title: "Quick",
           tabBarIcon: ({ size, color, focused }) => (
             <TabIcon icon={Zap} focused={focused} color={color} size={size} />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="account"
+        options={{
+          title: "Profile",
+          tabBarIcon: ({ size, color, focused }) => (
+            <TabIcon icon={UserRound} focused={focused} color={color} size={size} />
           ),
         }}
       />

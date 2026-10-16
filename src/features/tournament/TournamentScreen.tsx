@@ -247,7 +247,7 @@ export default function TournamentScreen() {
           text: "Delete",
           style: "destructive",
           onPress: async () => {
-            await Promise.all([...selectedIds].map((id) => remove(Number(id))));
+            await Promise.all([...selectedIds].map((id) => remove(id)));
             setSelectedIds(new Set());
           },
         },

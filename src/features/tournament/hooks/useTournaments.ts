@@ -27,7 +27,7 @@ export function useTournaments() {
   });
 
   const { mutateAsync: update } = useMutation({
-    mutationFn: ({ id, data }: { id: number; data: CreateTournament }) =>
+    mutationFn: ({ id, data }: { id: string; data: CreateTournament }) =>
       repository.update(id, data),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["tournaments"] });
@@ -35,14 +35,14 @@ export function useTournaments() {
   });
 
   const { mutateAsync: remove } = useMutation({
-    mutationFn: (id: number) => repository.delete(id),
+    mutationFn: (id: string) => repository.delete(id),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["tournaments"] });
     },
   });
 
   const { mutateAsync: generateBracket } = useMutation({
-    mutationFn: (id: number) => repository.generateBracket(id),
+    mutationFn: (id: string) => repository.generateBracket(id),
     onSuccess: async (_result, id) => {
       await queryClient.invalidateQueries({ queryKey: ["tournaments"] });
       await queryClient.invalidateQueries({ queryKey: ["bracket", id] });
@@ -50,7 +50,7 @@ export function useTournaments() {
   });
 
   const { mutateAsync: updateTournamentStatus } = useMutation({
-    mutationFn: ({ tournamentId, status }: { tournamentId: number; status: string }) =>
+    mutationFn: ({ tournamentId, status }: { tournamentId: string; status: string }) =>
       repository.updateTournamentStatus(tournamentId, status as any),
     onSuccess: async (_result, { tournamentId }) => {
       await queryClient.invalidateQueries({ queryKey: ["tournaments"] });
@@ -71,7 +71,7 @@ export function useTournaments() {
 }
 
 // Fetch a single tournament by id — useful for the review step / detail screen.
-export function useTournament(id: number | undefined) {
+export function useTournament(id: string | undefined) {
   const repository = useTournamentRepository();
 
   return useQuery({
@@ -87,7 +87,7 @@ export function useTournament(id: number | undefined) {
 }
 
 // Fetch the generated bracket (rounds + matches) for a tournament.
-export function useBracket(id: number | undefined) {
+export function useBracket(id: string | undefined) {
   const repository = useTournamentRepository();
 
   return useQuery({
@@ -102,7 +102,7 @@ export function useBracket(id: number | undefined) {
   });
 }
 
-export function useTournamentMatch(id: number | undefined) {
+export function useTournamentMatch(id: string | undefined) {
   const repository = useTournamentRepository();
   const queryClient = useQueryClient();
 
@@ -144,7 +144,7 @@ export function useTournamentMatch(id: number | undefined) {
 }
 
 //
-export function useStandings(tournamentId: number | undefined) {
+export function useStandings(tournamentId: string | undefined) {
   const repository = useTournamentRepository();
 
   return useQuery({

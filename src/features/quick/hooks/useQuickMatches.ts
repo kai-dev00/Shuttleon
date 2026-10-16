@@ -53,7 +53,7 @@ export function useQuickMatches() {
       id,
       status,
     }: {
-      id: number;
+      id: string;
       status: QuickMatch["status"];
     }) => repository.updateStatus(id, status),
 
@@ -66,7 +66,7 @@ export function useQuickMatches() {
 
   const { mutateAsync: updateSetScore } = useMutation({
     mutationFn: ({ id, teamASets, teamBSets }: {
-      id: number;
+      id: string;
       teamASets: number;
       teamBSets: number;
     }) => repository.updateSetScore(id, teamASets, teamBSets),
@@ -77,7 +77,7 @@ export function useQuickMatches() {
 
   const { mutateAsync: recordSetScore } = useMutation({
     mutationFn: ({ id, setNumber, teamAScore, teamBScore }: {
-      id: number;
+      id: string;
       setNumber: number;
       teamAScore: number;
       teamBScore: number;
@@ -85,14 +85,14 @@ export function useQuickMatches() {
   });
 
   const { mutateAsync: rematch } = useMutation({
-    mutationFn: (id: number) => repository.createRematch(id),
+    mutationFn: (id: string) => repository.createRematch(id),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["quick-matches"] });
     },
   });
 
   const { mutateAsync: update } = useMutation({
-    mutationFn: ({ id, data }: { id: number; data: CreateQuickMatch }) =>
+    mutationFn: ({ id, data }: { id: string; data: CreateQuickMatch }) =>
       repository.update(id, {
         matchType: data.matchType,
         bestOf: data.bestOf,
@@ -114,7 +114,7 @@ export function useQuickMatches() {
   });
 
   const { mutateAsync: remove } = useMutation({
-    mutationFn: (id: number) =>
+    mutationFn: (id: string) =>
       repository.delete(id),
 
     onSuccess: async () => {

@@ -214,7 +214,7 @@ export default function QuickMatchScreen() {
           text: "Delete",
           style: "destructive",
           onPress: async () => {
-            await Promise.all([...selectedIds].map((id) => remove(Number(id))));
+            await Promise.all([...selectedIds].map((id) => remove(id)));
             setSelectedIds(new Set());
           },
         },
@@ -229,7 +229,7 @@ export default function QuickMatchScreen() {
   return (
     <SafeAreaView className="flex-1 bg-background" edges={["top"]}>
       <Header
-        title={selecting ? `${selectedIds.size} selected` : "Quickey"}
+        title={selecting ? `${selectedIds.size} selected` : "Quick"}
         subtitle={
           selecting || !hasMatches
             ? undefined
